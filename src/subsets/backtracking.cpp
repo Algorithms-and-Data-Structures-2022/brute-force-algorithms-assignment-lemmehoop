@@ -29,13 +29,15 @@ namespace assignment {
     if (index == static_cast<int>(set.size()) - 1) {
 
       // ... сохранение полученного подмножества
-
-      return;  // возвращаемся по дереву рекурсии
+      subsets.push_back(mask2indices(set, mask));
+      return;
     }
 
     index += 1;  // рассматриваем следующий элемент
 
     // здесь должны быть рекурсивные вызовы ...
+    generate(set, index, mask, subsets);
+    generate(set, index, set_bit(mask, index), subsets);
     // включаем или не включаем элемент с текущим индексом в подмножество (используя битовую маску)
   }
 

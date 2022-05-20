@@ -10,14 +10,21 @@ namespace assignment {
     assert(set.size() <= 16);
 
     const auto num_elems = static_cast<int>(set.size());  // N
-    const int num_subsets = 1 << num_elems;               // 2^N
+    const int num_subsets = 1 << (num_elems);               // 2^N
 
     // выделяем память
     auto subsets = std::vector<std::vector<int>>(num_subsets);
-
     // 1. Внешний цикл: пробегаемся по всем битовым маскам от 0..00 до 1..11
     // 2. Внутренний цикл: проверка разрядов битовой маски и генерация подмножества, ассоциирующегося с этой маской
     // Tips: для проверки разряда бита на 1 (единицу) используйте функцию is_bit_set
+    for (int mask = 0; mask < num_subsets; mask++) {
+
+      for (int pos = 0; pos < num_elems; pos++) {
+        if (is_bit_set(mask, pos)) {
+          subsets[mask].push_back(pos);
+        }
+      }
+    }
 
     return subsets;
   }
