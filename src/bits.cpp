@@ -5,13 +5,18 @@
 namespace assignment {
 
   bool is_bit_set(int mask, int pos) {
-    assert(mask >= 0 && pos >= 0 && pos < 30);
-    return false;
+    assert(mask >= 0 && pos >= 0 && pos < 30);  // pos < макс. кол-ва бит в маске
+
+    int new_mask = 1 << pos;
+
+    return mask & new_mask;
   }
 
   int set_bit(int mask, int pos) {
     assert(mask >= 0 && pos >= 0 && pos < 30);
-    return 0;
+    int new_mask = 1 << pos;
+    mask = new_mask | mask;
+    return mask;
   }
 
   std::vector<int> mask2indices(const std::vector<int>& elems, int mask) {
